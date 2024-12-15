@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('project_management.category.index', compact('categories'));
     }
 
     /**
@@ -22,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('project_management.category.create');
     }
 
     /**
@@ -30,7 +31,8 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        Category::created($request->validated());
+        return redirect()->route('category.index')->with('success', 'Category created successfully.');
     }
 
     /**
@@ -38,7 +40,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('project_management.category.show', compact('category'));
     }
 
     /**
@@ -46,7 +48,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('project_management.category.edit', compact('category'));
     }
 
     /**
@@ -54,7 +56,8 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->validated());
+        return redirect()->route('category.show', compact('category'))->with('success', 'Category updated successfully.');
     }
 
     /**
@@ -62,6 +65,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::destroy($category->id);
+        return redirect()->route('category.index')->with('success', 'Category deleted successfully.');
     }
 }
