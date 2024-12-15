@@ -14,7 +14,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::all();
+        return view('project_management.tasks.index', compact('tasks'));
     }
 
     /**
@@ -22,7 +23,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('project_management.tasks.create');
     }
 
     /**
@@ -30,7 +31,8 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        //
+        Task::created($request->validated());
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
     /**
@@ -38,7 +40,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return view('project_management.tasks.show', compact('task'));
     }
 
     /**
@@ -46,7 +48,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('project_management.tasks.edit', compact('task'));
     }
 
     /**
@@ -54,7 +56,8 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        $task->update($request->validated());
+        return redirect()->route('tasks.show', compact('task'))->with('success', 'Task updated successfully');
     }
 
     /**
@@ -62,6 +65,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        Task::destroy($task);
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully');
     }
 }
