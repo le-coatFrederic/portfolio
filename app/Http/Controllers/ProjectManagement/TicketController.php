@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ProjectManagement;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreTicketRequest;
 use App\Http\Requests\ProjectManagement\UpdateTicketRequest;
+use App\Models\ProjectManagement\Task;
 use App\Models\ProjectManagement\Ticket;
 
 class TicketController extends Controller
@@ -14,7 +15,8 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $tickets = Ticket::all();
+        return view('project_management.tickets.index', compact('tickets'));
     }
 
     /**
@@ -22,7 +24,7 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        return view('project_management.tickets.create');
     }
 
     /**
@@ -30,7 +32,8 @@ class TicketController extends Controller
      */
     public function store(StoreTicketRequest $request)
     {
-        //
+        Task::created($request->validated());
+        return redirect()->route('tickets.index')->with('success', 'Ticket created successfully.');
     }
 
     /**
@@ -38,7 +41,7 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        //
+        return view('project_management.tickets.show', compact('ticket'));
     }
 
     /**
@@ -46,7 +49,7 @@ class TicketController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-        //
+        return view('project_management.tickets.edit', compact('ticket'));
     }
 
     /**
@@ -54,7 +57,8 @@ class TicketController extends Controller
      */
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
-        //
+        $ticket->update($request->validated());
+        return redirect()->route('tickets.show', compact('ticket'))->with('success', 'Ticket updated successfully.');
     }
 
     /**
@@ -62,6 +66,7 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        Ticket::destroy($ticket);
+        return redirect()->route('tickets.index')->with('success', 'Ticket deleted successfully.');
     }
 }
