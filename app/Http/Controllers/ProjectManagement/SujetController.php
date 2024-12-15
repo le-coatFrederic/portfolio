@@ -29,10 +29,10 @@ class SujetController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSujetRequest $request)
+    public function store(StoreSujetRequest $request, Sujet $sujet)
     {
         Sujet::created($request->validated());
-        return redirect()->route('sujets.index')->with('success', 'Subject created successfully.');
+        return redirect()->route('sujets.show', compact('sujet'))->with('success', 'Subject created successfully.');
     }
 
     /**
