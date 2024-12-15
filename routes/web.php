@@ -4,7 +4,15 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CV\CompetenceController;
 use App\Http\Controllers\CV\EvenementController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectManagement\ActionController;
+use App\Http\Controllers\ProjectManagement\CategoryController;
+use App\Http\Controllers\ProjectManagement\IncidentController;
+use App\Http\Controllers\ProjectManagement\ProjectController;
+use App\Http\Controllers\ProjectManagement\SujetController;
+use App\Http\Controllers\ProjectManagement\TaskController;
+use App\Http\Controllers\ProjectManagement\TicketController;
 use App\Models\CV\TypeEvenement;
+use App\Models\ProjectManagement\Etat;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
@@ -39,3 +47,94 @@ Route::prefix('auth')->name('auth.')->controller(AuthController::class)->group(f
     Route::get('/login', 'login')->name('login');
     Route::post('/login', 'doLogin');
 });
+
+Route::prefix('/actions')->name('actions.')->controller(ActionController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store');
+    Route::get('/{action}', 'show')->name('show');
+    Route::get('/{action}/edit', 'edit')->name('edit');
+    Route::post('/{action}/edit', 'update');
+    Route::get('/{action}/delete', 'delete')->name('delete');
+});
+
+Route::prefix('/categories')->name('categories.')->controller(CategoryController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store');
+    Route::get('/{category}', 'show')->name('show');
+    Route::get('/{category}/edit', 'edit')->name('edit');
+    Route::post('/{category}/edit', 'update');
+    Route::get('/{category}/delete', 'delete')->name('delete');
+});
+
+Route::prefix('/contacts')->name('contacts.')->controller(ActionController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store');
+    Route::get('/{contact}', 'show')->name('show');
+    Route::get('/{contact}/edit', 'edit')->name('edit');
+    Route::post('/{contact}/edit', 'update');
+    Route::get('/{contact}/delete', 'delete')->name('delete');
+});
+
+Route::prefix('/etats')->name('etats.')->controller(Etat::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store');
+    Route::get('/{etat}', 'show')->name('show');
+    Route::get('/{etat}/edit', 'edit')->name('edit');
+    Route::post('/{etat}/edit', 'update');
+    Route::get('/{etat}/delete', 'delete')->name('delete');
+});
+
+Route::prefix('/incidents')->name('incidents.')->controller(IncidentController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store');
+    Route::get('/{incident}', 'show')->name('show');
+    Route::get('/{incident}/edit', 'edit')->name('edit');
+    Route::post('/{incident}/edit', 'update');
+    Route::get('/{incident}/delete', 'delete')->name('delete');
+});
+
+Route::prefix('/projects')->name('projects.')->controller(ProjectController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store');
+    Route::get('/{project}', 'show')->name('show');
+    Route::get('/{project}/edit', 'edit')->name('edit');
+    Route::post('/{project}/edit', 'update');
+    Route::get('/{project}/delete', 'delete')->name('delete');
+});
+
+Route::prefix('/sujets')->name('sujets.')->controller(SujetController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store');
+    Route::get('/{sujet}', 'show')->name('show');
+    Route::get('/{sujet}/edit', 'edit')->name('edit');
+    Route::post('/{sujet}/edit', 'update');
+    Route::get('/{sujet}/delete', 'delete')->name('delete');
+});
+
+Route::prefix('/tasks')->name('tasks.')->controller(TaskController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store');
+    Route::get('/{task}', 'show')->name('show');
+    Route::get('/{task}/edit', 'edit')->name('edit');
+    Route::post('/{task}/edit', 'update');
+    Route::get('/{task}/delete', 'delete')->name('delete');
+});
+
+Route::prefix('/tickets')->name('tickets.')->controller(TicketController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store');
+    Route::get('/{ticket}', 'show')->name('show');
+    Route::get('/{ticket}/edit', 'edit')->name('edit');
+    Route::post('/{ticket}/edit', 'update');
+    Route::get('/{ticket}/delete', 'delete')->name('delete');
+});
+

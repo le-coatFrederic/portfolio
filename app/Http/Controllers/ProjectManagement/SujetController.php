@@ -23,7 +23,8 @@ class SujetController extends Controller
      */
     public function create()
     {
-        return view('project_management.sujets.create');
+        $sujet = new Sujet();
+        return view('project_management.sujets.create', compact('sujet'));
     }
 
     /**
@@ -54,7 +55,7 @@ class SujetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSujetRequest $request, Sujet $sujet)
+    public function update(StoreSujetRequest $request, Sujet $sujet)
     {
         $sujet->updated($request->validated());
         return redirect()->route('sujets.index')->with('success', 'Subject updated successfully.');

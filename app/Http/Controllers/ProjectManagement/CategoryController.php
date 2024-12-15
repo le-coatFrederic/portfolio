@@ -23,7 +23,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('project_management.category.create');
+        $category = new Category();
+        return view('project_management.category.create', compact('category'));
     }
 
     /**
@@ -54,7 +55,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(StoreCategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
         return redirect()->route('category.show', compact('category'))->with('success', 'Category updated successfully.');

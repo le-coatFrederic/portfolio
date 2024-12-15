@@ -23,7 +23,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('project_management.contact.create');
+        $contact = new Contact();
+        return view('project_management.contact.create', compact('contact'));
     }
 
     /**
@@ -54,7 +55,7 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateContactRequest $request, Contact $contact)
+    public function update(StoreContactRequest $request, Contact $contact)
     {
         $contact->update($request->validated());
         return redirect()->route('project_management.contact.show', compact('contact'))->with('success', 'Contact updated successfully.');

@@ -23,7 +23,8 @@ class EtatController extends Controller
      */
     public function create()
     {
-        return view('project_management.etat.create');
+        $etat = new Etat();
+        return view('project_management.etat.create', compact('etat'));
     }
 
     /**
@@ -54,7 +55,7 @@ class EtatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEtatRequest $request, Etat $etat)
+    public function update(StoreEtatRequest $request, Etat $etat)
     {
         $etat->update($request->validated());
         return redirect()->route('etat.show', compact($etat))->with('success', 'Etat has been updated successfully.');

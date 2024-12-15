@@ -23,7 +23,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('project_management.tasks.create');
+        $task = new Task();
+        return view('project_management.tasks.create', compact('task'));
     }
 
     /**
@@ -54,7 +55,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(StoreTaskRequest $request, Task $task)
     {
         $task->update($request->validated());
         return redirect()->route('tasks.show', compact('task'))->with('success', 'Task updated successfully');

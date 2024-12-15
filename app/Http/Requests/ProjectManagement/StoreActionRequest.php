@@ -11,7 +11,7 @@ class StoreActionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreActionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'description' => ['required', 'string', 'max:255', 'min:12'],
+            'date' => ['required', 'date'],
+            'back_log_entity_id' => ['required', 'integer', 'exists:back_log_entities,id'],
         ];
     }
 }

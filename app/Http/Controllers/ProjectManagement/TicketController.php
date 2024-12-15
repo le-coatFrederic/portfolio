@@ -24,7 +24,8 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return view('project_management.tickets.create');
+        $ticket = new Ticket();
+        return view('project_management.tickets.create', compact('ticket'));
     }
 
     /**
@@ -55,7 +56,7 @@ class TicketController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTicketRequest $request, Ticket $ticket)
+    public function update(StoreTicketRequest $request, Ticket $ticket)
     {
         $ticket->update($request->validated());
         return redirect()->route('tickets.show', compact('ticket'))->with('success', 'Ticket updated successfully.');

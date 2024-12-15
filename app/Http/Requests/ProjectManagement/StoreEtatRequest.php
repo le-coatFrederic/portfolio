@@ -11,7 +11,7 @@ class StoreEtatRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreEtatRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'intitule' => ['required', 'string', 'max:64', 'unique:etats,intitule'],
+            'description' => ['required', 'string', 'max:255'],
         ];
     }
 }
