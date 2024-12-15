@@ -14,7 +14,8 @@ class EtatController extends Controller
      */
     public function index()
     {
-        //
+        $etats = Etat::all();
+        return view('project_management.etat.index', compact('etats'));
     }
 
     /**
@@ -22,7 +23,7 @@ class EtatController extends Controller
      */
     public function create()
     {
-        //
+        return view('project_management.etat.create');
     }
 
     /**
@@ -30,7 +31,8 @@ class EtatController extends Controller
      */
     public function store(StoreEtatRequest $request)
     {
-        //
+        Etat::created($request->validated());
+        return redirect()->route('etat.index')->with('success', 'Etat has been created successfully.');
     }
 
     /**
@@ -38,7 +40,7 @@ class EtatController extends Controller
      */
     public function show(Etat $etat)
     {
-        //
+        return view('project_management.etat.show', compact('etat'));
     }
 
     /**
@@ -46,7 +48,7 @@ class EtatController extends Controller
      */
     public function edit(Etat $etat)
     {
-        //
+        return view('project_management.etat.edit', compact('etat'));
     }
 
     /**
@@ -54,7 +56,8 @@ class EtatController extends Controller
      */
     public function update(UpdateEtatRequest $request, Etat $etat)
     {
-        //
+        $etat->update($request->validated());
+        return redirect()->route('etat.show', compact($etat))->with('success', 'Etat has been updated successfully.');
     }
 
     /**
@@ -62,6 +65,7 @@ class EtatController extends Controller
      */
     public function destroy(Etat $etat)
     {
-        //
+        Etat::destroy($etat);
+        return redirect()->route('etat.index')->with('success', 'Etat has been deleted successfully.');
     }
 }
