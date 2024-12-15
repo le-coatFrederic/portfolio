@@ -14,7 +14,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+        return view('project_management.project.index', compact('projects'));
     }
 
     /**
@@ -22,7 +23,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('project_management.project.create');
     }
 
     /**
@@ -30,7 +31,8 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        Project::created($request->validated());
+        return redirect()->route('project_management.project.index')->with('success', 'Project created successfully.');
     }
 
     /**
@@ -38,7 +40,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('project_management.project.show', compact('project'));
     }
 
     /**
@@ -46,7 +48,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('project_management.project.edit', compact('project'));
     }
 
     /**
@@ -54,7 +56,8 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $project->update($request->validated());
+        return redirect()->route('project_management.project.show', compact('project'))->with('success', 'Project updated successfully.');
     }
 
     /**
@@ -62,6 +65,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        Project::destroy($project);
+        return redirect()->route('project_management.project.index')->with('success', 'Project deleted successfully.');
     }
 }
