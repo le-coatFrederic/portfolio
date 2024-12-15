@@ -23,7 +23,8 @@ class IncidentController extends Controller
      */
     public function create()
     {
-        return view('project_management.incidents.create');
+        $incident = new Incident();
+        return view('project_management.incidents.create', compact('incident'));
     }
 
     /**
@@ -54,7 +55,7 @@ class IncidentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateIncidentRequest $request, Incident $incident)
+    public function update(StoreIncidentRequest $request, Incident $incident)
     {
         $incident->update($request->validated());
         return redirect()->route('incidents.show', compact('incident'))->with('success', 'Incident updated successfully');

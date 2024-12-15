@@ -11,7 +11,7 @@ class StoreSujetRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreSujetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'intitule' => ['required', 'string', 'max:255', 'unique:sujets,intitule'],
+            'description' => ['required', 'string', 'max:255'],
+            'etat_id' => ['required', 'integer', 'exists:etats,id'],
         ];
     }
 }

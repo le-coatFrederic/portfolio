@@ -23,7 +23,8 @@ class ActionController extends Controller
      */
     public function create()
     {
-        return view('project_management.actions.create');
+        $action = new Action();
+        return view('project_management.actions.create', compact('action'));
     }
 
     /**
@@ -31,7 +32,7 @@ class ActionController extends Controller
      */
     public function store(StoreActionRequest $request)
     {
-        $action = Action::created($request->validated());
+        Action::created($request->validated());
         return redirect()->route('actions.index')->with('success', 'Action created successfully.');
     }
 
@@ -54,7 +55,7 @@ class ActionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateActionRequest $request, Action $action)
+    public function update(StoreActionRequest $request, Action $action)
     {
         $action->update($request->validated());
         return redirect()->route('actions.show', compact('action'))->with('success', 'Action updated successfully.');

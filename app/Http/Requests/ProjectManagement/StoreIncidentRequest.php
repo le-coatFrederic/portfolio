@@ -11,7 +11,7 @@ class StoreIncidentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreIncidentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'intitule' => ['required', 'string', 'max:255', 'unique:incidents,intitule'],
+            'description' => ['required', 'string', 'max:255'],
         ];
     }
 }

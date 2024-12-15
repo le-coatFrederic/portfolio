@@ -11,7 +11,7 @@ class StoreProjectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'intitule' => ['required', 'string', 'max:255', 'unique:projects,intitule'],
+            'description' => ['required', 'string', 'max:255'],
+            'date_debut' => ['required', 'date'],
+            'date_fin' => ['date', 'after_or_equal:date_debut', 'nullable'],
+            'sujet_id' => ['required', 'exists:sujets,id'],
+            'etat_id' => ['required', 'exists:etats,id'],
         ];
     }
 }

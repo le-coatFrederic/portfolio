@@ -11,7 +11,7 @@ class StoreContactRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'firstName' => ['required', 'string', 'max:255'],
+            'lastName' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:contacts'],
+            'phone' => ['string', 'min:10', 'max:10', 'unique:contacts'],
+            'address' => ['string', 'max:255'],
+            'city' => ['string', 'max:255'],
+            'state' => ['string', 'max:255'],
+            'zip' => ['string', 'max:255'],
+            'company' => ['string', 'max:255'],
+            'job_title' => ['string', 'max:255'],
         ];
     }
 }

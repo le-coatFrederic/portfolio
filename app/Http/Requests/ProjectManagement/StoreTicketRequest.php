@@ -11,7 +11,7 @@ class StoreTicketRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreTicketRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'number' => ['required', 'string', 'unique:tickets,number'],
+            'link' => ['required', 'string', 'unique:tickets,link'],
         ];
     }
 }

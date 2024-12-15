@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('skill.edit') }}" method="post">
+            <form action="{{ route('skill.create') }}" method="post">
                 @csrf
 
                 <div class="form-group">
