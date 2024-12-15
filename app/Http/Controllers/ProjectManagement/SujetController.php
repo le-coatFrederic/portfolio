@@ -14,7 +14,8 @@ class SujetController extends Controller
      */
     public function index()
     {
-        //
+        $sujets = Sujet::all();
+        return view('project_management.sujets.index', compact('sujets'));
     }
 
     /**
@@ -22,7 +23,7 @@ class SujetController extends Controller
      */
     public function create()
     {
-        //
+        return view('project_management.sujets.create');
     }
 
     /**
@@ -30,7 +31,8 @@ class SujetController extends Controller
      */
     public function store(StoreSujetRequest $request)
     {
-        //
+        Sujet::created($request->validated());
+        return redirect()->route('sujets.index')->with('success', 'Subject created successfully.');
     }
 
     /**
@@ -38,7 +40,7 @@ class SujetController extends Controller
      */
     public function show(Sujet $sujet)
     {
-        //
+        return view('project_management.sujets.show', compact('sujet'));
     }
 
     /**
@@ -46,7 +48,7 @@ class SujetController extends Controller
      */
     public function edit(Sujet $sujet)
     {
-        //
+        return view('project_management.sujets.edit', compact('sujet'));
     }
 
     /**
@@ -54,7 +56,8 @@ class SujetController extends Controller
      */
     public function update(UpdateSujetRequest $request, Sujet $sujet)
     {
-        //
+        $sujet->updated($request->validated());
+        return redirect()->route('sujets.index')->with('success', 'Subject updated successfully.');
     }
 
     /**
@@ -62,6 +65,7 @@ class SujetController extends Controller
      */
     public function destroy(Sujet $sujet)
     {
-        //
+        Sujet::destroy($sujet);
+        return redirect()->route('sujets.index')->with('success', 'Subject deleted successfully.');
     }
 }
