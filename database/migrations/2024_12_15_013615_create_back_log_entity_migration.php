@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\ProjectManagment\BackLogEntity;
-use App\Models\ProjectManagment\Etat;
-use App\Models\ProjectManagment\Project;
+use App\Models\ProjectManagement\BackLogEntity;
+use App\Models\ProjectManagement\Etat;
+use App\Models\ProjectManagement\Project;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

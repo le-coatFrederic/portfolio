@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\ProjectManagment\Etat;
+use App\Models\ProjectManagement\Etat;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

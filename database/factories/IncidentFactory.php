@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProjectManagment\Incident>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProjectManagement\Incident>
  */
 class IncidentFactory extends Factory
 {

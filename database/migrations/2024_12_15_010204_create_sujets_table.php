@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\ProjectManagment\Category;
-use App\Models\ProjectManagment\Etat;
-use App\Models\ProjectManagment\Sujet;
+use App\Models\ProjectManagement\Category;
+use App\Models\ProjectManagement\Etat;
+use App\Models\ProjectManagement\Sujet;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

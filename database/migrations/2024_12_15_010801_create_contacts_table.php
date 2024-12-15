@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\ProjectManagment\Contact;
-use App\Models\ProjectManagment\Project;
+use App\Models\ProjectManagement\Contact;
+use App\Models\ProjectManagement\Project;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

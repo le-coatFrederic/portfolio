@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\ProjectManagment\BackLogEntity;
-use App\Models\ProjectManagment\Task;
+use App\Models\ProjectManagement\BackLogEntity;
+use App\Models\ProjectManagement\Task;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
