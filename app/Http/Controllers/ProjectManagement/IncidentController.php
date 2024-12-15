@@ -14,7 +14,8 @@ class IncidentController extends Controller
      */
     public function index()
     {
-        //
+        $incidents = Incident::all();
+        return view('project_management.incidents.index', compact('incidents'));
     }
 
     /**
@@ -22,7 +23,7 @@ class IncidentController extends Controller
      */
     public function create()
     {
-        //
+        return view('project_management.incidents.create');
     }
 
     /**
@@ -30,7 +31,8 @@ class IncidentController extends Controller
      */
     public function store(StoreIncidentRequest $request)
     {
-        //
+        Incident::created($request->validated());
+        return redirect()->route('incidents.index');
     }
 
     /**
@@ -38,7 +40,7 @@ class IncidentController extends Controller
      */
     public function show(Incident $incident)
     {
-        //
+        return view('project_management.incidents.show', compact('incident'));
     }
 
     /**
@@ -46,7 +48,7 @@ class IncidentController extends Controller
      */
     public function edit(Incident $incident)
     {
-        //
+        return view('project_management.incidents.edit', compact('incident'));
     }
 
     /**
@@ -54,7 +56,8 @@ class IncidentController extends Controller
      */
     public function update(UpdateIncidentRequest $request, Incident $incident)
     {
-        //
+        $incident->update($request->validated());
+        return redirect()->route('incidents.show', compact('incident'))->with('success', 'Incident updated successfully');
     }
 
     /**
@@ -62,6 +65,7 @@ class IncidentController extends Controller
      */
     public function destroy(Incident $incident)
     {
-        //
+        Incident::destroy($incident);
+        return redirect()->route('incidents.index')->with('success', 'Incident deleted successfully');
     }
 }
