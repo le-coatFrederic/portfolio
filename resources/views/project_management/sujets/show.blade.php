@@ -8,12 +8,26 @@
 
         <div>
             <label for="intitule">Intitule</label>
-            <p name="intitule" id="intitule">{{ $sujet->intitule }}</p>
+            <p id="intitule">{{ $sujet->intitule }}</p>
         </div>
 
         <div>
             <label for="descripion">Description</label>
-            <p name="description" id="descripion">{{ $sujet->description }}</p>
+                <p id="descripion">{{ $sujet->description }}</p>
+        </div>
+
+        <div>
+            <label for="etat">Etat</label>
+                <p id="etat">{{ $sujet->etat->intitule }}</p>
+        </div>
+
+        <div>
+            <label for="categories">Catégories</label>
+                <div id="categories">
+                @foreach($categories as $category)
+                    <strong>{{ $category->intitule }}</strong>
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection

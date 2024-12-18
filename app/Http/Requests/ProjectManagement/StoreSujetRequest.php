@@ -3,6 +3,7 @@
 namespace App\Http\Requests\ProjectManagement;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreSujetRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class StoreSujetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'intitule' => ['required', 'string', 'max:255', 'unique:sujets,intitule'],
+            'intitule' => ['required', 'string', 'max:255', Rule::unique('sujets', 'intitule')->ignore($this->route()->parameter('sujet'))],
             'description' => ['required', 'string', 'max:255'],
             'etat_id' => ['required', 'integer', 'exists:etats,id'],
         ];

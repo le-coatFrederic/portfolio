@@ -4,7 +4,6 @@ namespace App\Http\Controllers\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreEtatRequest;
-use App\Http\Requests\ProjectManagement\UpdateEtatRequest;
 use App\Models\ProjectManagement\Etat;
 
 class EtatController extends Controller
@@ -66,7 +65,7 @@ class EtatController extends Controller
      */
     public function destroy(Etat $etat)
     {
-        Etat::destroy($etat);
+        Etat::destroy($etat->id);
         return redirect()->route('etat.index')->with('success', 'Etat has been deleted successfully.');
     }
 }

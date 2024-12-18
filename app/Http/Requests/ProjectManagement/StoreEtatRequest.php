@@ -3,6 +3,7 @@
 namespace App\Http\Requests\ProjectManagement;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreEtatRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class StoreEtatRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'intitule' => ['required', 'string', 'max:64', 'unique:etats,intitule'],
+            'intitule' => ['required', 'string', 'max:64', Rule::unique('etats', 'intitule')->ignore($this->route()->parameter('etat'))],
             'description' => ['required', 'string', 'max:255'],
         ];
     }

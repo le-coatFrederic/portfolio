@@ -4,7 +4,6 @@ namespace App\Http\Controllers\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreProjectRequest;
-use App\Http\Requests\ProjectManagement\UpdateProjectRequest;
 use App\Models\ProjectManagement\Project;
 
 class ProjectController extends Controller
@@ -66,7 +65,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        Project::destroy($project);
+        Project::destroy($project->id);
         return redirect()->route('projects.index')->with('success', 'Project deleted successfully.');
     }
 }
