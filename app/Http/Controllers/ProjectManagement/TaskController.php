@@ -4,7 +4,6 @@ namespace App\Http\Controllers\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreTaskRequest;
-use App\Http\Requests\ProjectManagement\UpdateTaskRequest;
 use App\Models\ProjectManagement\Task;
 
 class TaskController extends Controller
@@ -66,7 +65,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        Task::destroy($task);
+        Task::destroy($task->id);
         return redirect()->route('tasks.index')->with('success', 'Task deleted successfully');
     }
 }

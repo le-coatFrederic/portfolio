@@ -3,6 +3,7 @@
 namespace App\Http\Requests\ProjectManagement;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreContactRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class StoreContactRequest extends FormRequest
         return [
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:contacts'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('contacts', 'email')->ignore($this->route()->parameter('contact'))],
             'phone' => ['string', 'min:10', 'max:10', 'unique:contacts'],
             'address' => ['string', 'max:255'],
             'city' => ['string', 'max:255'],

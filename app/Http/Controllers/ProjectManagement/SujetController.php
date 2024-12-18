@@ -4,7 +4,8 @@ namespace App\Http\Controllers\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreSujetRequest;
-use App\Http\Requests\ProjectManagement\UpdateSujetRequest;
+use App\Models\ProjectManagement\Category;
+use App\Models\ProjectManagement\Etat;
 use App\Models\ProjectManagement\Sujet;
 
 class SujetController extends Controller
@@ -14,7 +15,7 @@ class SujetController extends Controller
      */
     public function index()
     {
-        $sujets = Sujet::all();
+        $sujets = Sujet::with('etat')->get();
         return view('project_management.sujets.index', compact('sujets'));
     }
 
@@ -24,7 +25,9 @@ class SujetController extends Controller
     public function create()
     {
         $sujet = new Sujet();
-        return view('project_management.sujets.create', compact('sujet'));
+        $etats = Etat::select('id', 'intitule')->get();
+        $categories = Category::select('id', 'intitule')->get();
+        return view('project_management.sujets.create', compact('sujet', 'etats', 'categories'));
     }
 
     /**
@@ -32,7 +35,7 @@ class SujetController extends Controller
      */
     public function store(StoreSujetRequest $request)
     {
-        Sujet::created($request->validated());
+        Sujet::create($request->validated());
         return redirect()->route('sujets.index')->with('success', 'Subject created successfully.');
     }
 
@@ -41,7 +44,8 @@ class SujetController extends Controller
      */
     public function show(Sujet $sujet)
     {
-        return view('project_management.sujets.show', compact('sujet'));
+        $categories = Sujet::with('categories');
+        return view('project_management.sujets.show', compact('sujet', 'categories'));
     }
 
     /**
@@ -49,7 +53,9 @@ class SujetController extends Controller
      */
     public function edit(Sujet $sujet)
     {
-        return view('project_management.sujets.edit', compact('sujet'));
+        $etats = Etat::select('id', 'intitule')->get();
+        $categories = Category::select('id', 'intitule')->get();
+        return view('project_management.sujets.edit', compact('sujet', 'etats', 'categories'));
     }
 
     /**
@@ -57,7 +63,7 @@ class SujetController extends Controller
      */
     public function update(StoreSujetRequest $request, Sujet $sujet)
     {
-        $sujet->updated($request->validated());
+        $sujet->update($request->validated());
         return redirect()->route('sujets.index')->with('success', 'Subject updated successfully.');
     }
 
@@ -66,7 +72,7 @@ class SujetController extends Controller
      */
     public function destroy(Sujet $sujet)
     {
-        Sujet::destroy($sujet);
+        Sujet::destroy($sujet->id);
         return redirect()->route('sujets.index')->with('success', 'Subject deleted successfully.');
     }
 }

@@ -9,6 +9,7 @@
                 <td>ID</td>
                 <td>Intitule</td>
                 <td>Description</td>
+                <td>Etat</td>
             </tr>
             </thead>
             <tbody>
@@ -17,7 +18,9 @@
                     <td>{{ $sujet->id }}</td>
                     <td>{{ $sujet->intitule }}</td>
                     <td>{{ $sujet->description }}</td>
+                    <td>{{ $sujet->etat->intitule }}</td>
                     <td><a href="{{ route('sujets.show', ['sujet' => $sujet]) }}">Détail</a></td>
+                    <td><a href="{{ route('sujets.edit', ['sujet' => $sujet]) }}">Editer</a></td>
                     <td><a href="{{ route('sujets.delete', ['sujet' => $sujet]) }}">Supprimer</a></td>
                 </tr>
             @endforeach

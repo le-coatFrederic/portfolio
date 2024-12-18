@@ -4,7 +4,6 @@ namespace App\Http\Controllers\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreContactRequest;
-use App\Http\Requests\ProjectManagement\UpdateContactRequest;
 use App\Models\ProjectManagement\Contact;
 
 class ContactController extends Controller
@@ -66,7 +65,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        Contact::destroy($contact);
+        Contact::destroy($contact->id);
         return redirect()->route('project_management.contact.index')->with('success', 'Contact deleted successfully.');
     }
 }

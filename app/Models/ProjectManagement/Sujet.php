@@ -16,6 +16,7 @@ class Sujet extends Model
     protected $fillable = [
         'intitule',
         'description',
+        'etat_id'
     ];
 
     public function etat(): BelongsTo {

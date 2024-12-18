@@ -4,7 +4,6 @@ namespace App\Http\Controllers\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreIncidentRequest;
-use App\Http\Requests\ProjectManagement\UpdateIncidentRequest;
 use App\Models\ProjectManagement\Incident;
 
 class IncidentController extends Controller
@@ -66,7 +65,7 @@ class IncidentController extends Controller
      */
     public function destroy(Incident $incident)
     {
-        Incident::destroy($incident);
+        Incident::destroy($incident->id);
         return redirect()->route('incidents.index')->with('success', 'Incident deleted successfully');
     }
 }

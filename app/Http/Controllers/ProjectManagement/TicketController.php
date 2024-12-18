@@ -4,7 +4,6 @@ namespace App\Http\Controllers\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreTicketRequest;
-use App\Http\Requests\ProjectManagement\UpdateTicketRequest;
 use App\Models\ProjectManagement\Task;
 use App\Models\ProjectManagement\Ticket;
 
@@ -67,7 +66,7 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        Ticket::destroy($ticket);
+        Ticket::destroy($ticket->id);
         return redirect()->route('tickets.index')->with('success', 'Ticket deleted successfully.');
     }
 }
