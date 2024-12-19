@@ -31,7 +31,7 @@ class IncidentController extends Controller
      */
     public function store(StoreIncidentRequest $request)
     {
-        Incident::created($request->validated());
+        Incident::create($request->validated());
         return redirect()->route('incidents.index');
     }
 

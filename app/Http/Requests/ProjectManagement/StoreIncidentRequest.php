@@ -22,7 +22,7 @@ class StoreIncidentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'intitule' => ['required', 'string', 'max:255', 'unique:incidents,intitule'],
+            'intitule' => ['required', 'string', 'max:255', Rule::unique('incidents', 'intitule')->ignore($this->route()->parameter('incident'))],
             'description' => ['required', 'string', 'max:255'],
         ];
     }

@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('project_management.category.index', compact('categories'));
+        return view('project_management.categories.index', compact('categories'));
     }
 
     /**
@@ -24,7 +24,7 @@ class CategoryController extends Controller
     public function create()
     {
         $category = new Category();
-        return view('project_management.category.create', compact('category'));
+        return view('project_management.categories.create', compact('category'));
     }
 
     /**
@@ -32,8 +32,8 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        Category::created($request->validated());
-        return redirect()->route('category.index')->with('success', 'Category created successfully.');
+        Category::create($request->validated());
+        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
 
     /**
@@ -41,7 +41,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('project_management.category.show', compact('category'));
+        return view('project_management.categories.show', compact('category'));
     }
 
     /**
@@ -49,7 +49,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('project_management.category.edit', compact('category'));
+        return view('project_management.categories.edit', compact('category'));
     }
 
     /**
@@ -58,7 +58,7 @@ class CategoryController extends Controller
     public function update(StoreCategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
-        return redirect()->route('category.show', compact('category'))->with('success', 'Category updated successfully.');
+        return redirect()->route('categories.show', compact('category'))->with('success', 'Category updated successfully.');
     }
 
     /**
@@ -67,6 +67,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         Category::destroy($category->id);
-        return redirect()->route('category.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
     }
 }

@@ -32,7 +32,7 @@ class TicketController extends Controller
      */
     public function store(StoreTicketRequest $request)
     {
-        Task::created($request->validated());
+        Task::create($request->validated());
         return redirect()->route('tickets.index')->with('success', 'Ticket created successfully.');
     }
 

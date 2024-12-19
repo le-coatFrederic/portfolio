@@ -26,6 +26,7 @@ class StoreSujetRequest extends FormRequest
             'intitule' => ['required', 'string', 'max:255', Rule::unique('sujets', 'intitule')->ignore($this->route()->parameter('sujet'))],
             'description' => ['required', 'string', 'max:255'],
             'etat_id' => ['required', 'integer', 'exists:etats,id'],
+            'categories' => ['array', 'exists:categories,id', 'required'],
         ];
     }
 }

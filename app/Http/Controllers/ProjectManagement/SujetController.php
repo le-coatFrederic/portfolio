@@ -15,7 +15,7 @@ class SujetController extends Controller
      */
     public function index()
     {
-        $sujets = Sujet::with('etat')->get();
+        $sujets = Sujet::with('etat', 'categories')->get();
         return view('project_management.sujets.index', compact('sujets'));
     }
 
@@ -35,7 +35,8 @@ class SujetController extends Controller
      */
     public function store(StoreSujetRequest $request)
     {
-        Sujet::create($request->validated());
+        $sujet = Sujet::create($request->validated());
+        $sujet->categories()->sync($request->validated()['categories']);
         return redirect()->route('sujets.index')->with('success', 'Subject created successfully.');
     }
 
@@ -44,8 +45,7 @@ class SujetController extends Controller
      */
     public function show(Sujet $sujet)
     {
-        $categories = Sujet::with('categories');
-        return view('project_management.sujets.show', compact('sujet', 'categories'));
+        return view('project_management.sujets.show', compact('sujet'));
     }
 
     /**
@@ -64,6 +64,7 @@ class SujetController extends Controller
     public function update(StoreSujetRequest $request, Sujet $sujet)
     {
         $sujet->update($request->validated());
+        $sujet->categories()->sync($request->validated()['categories']);
         return redirect()->route('sujets.index')->with('success', 'Subject updated successfully.');
     }
 

@@ -22,7 +22,7 @@ class StoreTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'intitule' => ['required', 'string', 'max:255', 'unique:tasks,intitule'],
+            'intitule' => ['required', 'string', 'max:255', Rule::unique('tasks', 'intitule')->ignore($this->route()->parameter('task'))],
             'description' => ['required', 'string', 'max:255'],
             'deadline' => ['required', 'date', 'after_or_equal:today'],
             'status' => ['string', 'max:255'],

@@ -32,7 +32,7 @@ class ActionController extends Controller
      */
     public function store(StoreActionRequest $request)
     {
-        Action::created($request->validated());
+        Action::create($request->validated());
         return redirect()->route('actions.index')->with('success', 'Action created successfully.');
     }
 

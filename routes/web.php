@@ -6,6 +6,7 @@ use App\Http\Controllers\CV\EvenementController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectManagement\ActionController;
 use App\Http\Controllers\ProjectManagement\CategoryController;
+use App\Http\Controllers\ProjectManagement\ContactController;
 use App\Http\Controllers\ProjectManagement\EtatController;
 use App\Http\Controllers\ProjectManagement\IncidentController;
 use App\Http\Controllers\ProjectManagement\ProjectController;
@@ -69,7 +70,7 @@ Route::prefix('/categories')->name('categories.')->controller(CategoryController
     Route::get('/{category}/delete', 'destroy')->name('delete');
 });
 
-Route::prefix('/contacts')->name('contacts.')->controller(ActionController::class)->group(function() {
+Route::prefix('/contacts')->name('contacts.')->controller(ContactController::class)->group(function() {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/create', 'store');

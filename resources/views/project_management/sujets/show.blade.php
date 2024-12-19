@@ -23,9 +23,18 @@
 
         <div>
             <label for="categories">Catégories</label>
-                <div id="categories">
-                @foreach($categories as $category)
+            <div id="categories">
+                @foreach($sujet->categories()->get() as $category)
                     <strong>{{ $category->intitule }}</strong>
+                @endforeach
+            </div>
+        </div>
+
+        <div>
+            <label for="projects">Projets</label>
+            <div id="projects">
+                @foreach($sujet->projets()->get() as $project)
+                    <strong>{{ $project->intitule }}</strong>
                 @endforeach
             </div>
         </div>

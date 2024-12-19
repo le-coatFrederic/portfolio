@@ -54,7 +54,7 @@
                         <label for="categories">
                             Catégories
                         </label>
-                        <select id="categories" name="categories" multiple>
+                        <select id="categories" name="categories[]" multiple>
                             @foreach($categories as $category)
                                 <option @selected($categoriesId->contains($category->id)) value="{{ $category->id }}">{{ $category->intitule }}</option>
                             @endforeach
