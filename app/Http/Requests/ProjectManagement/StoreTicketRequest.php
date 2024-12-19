@@ -3,6 +3,7 @@
 namespace App\Http\Requests\ProjectManagement;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreTicketRequest extends FormRequest
 {
@@ -22,8 +23,8 @@ class StoreTicketRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'number' => ['required', 'string', 'unique:tickets,number'],
-            'link' => ['required', 'string', 'unique:tickets,link'],
+            'number' => ['required', 'string', Rule::unique('tickets', 'number')->ignore($this->route()->parameter('ticket'))],
+            'link' => ['required', 'string', Rule::unique('tickets', 'link')->ignore($this->route()->parameter('ticket'))],
         ];
     }
 }

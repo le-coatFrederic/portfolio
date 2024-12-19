@@ -14,7 +14,7 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = Contact::all();
-        return view('project_management.contact.index', compact('contacts'));
+        return view('project_management.contacts.index', compact('contacts'));
     }
 
     /**
@@ -23,7 +23,7 @@ class ContactController extends Controller
     public function create()
     {
         $contact = new Contact();
-        return view('project_management.contact.create', compact('contact'));
+        return view('project_management.contacts.create', compact('contact'));
     }
 
     /**
@@ -31,8 +31,8 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        Contact::created($request->validated());
-        return redirect()->route('project_management.contact.index')->with('success', 'Contact created successfully.');
+        Contact::create($request->validated());
+        return redirect()->route('contacts.index')->with('success', 'Contact created successfully.');
     }
 
     /**
@@ -40,7 +40,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        return view('project_management.contact.show', compact('contact'));
+        return view('project_management.contacts.show', compact('contact'));
     }
 
     /**
@@ -48,7 +48,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        return view('project_management.contact.edit', compact('contact'));
+        return view('project_management.contacts.edit', compact('contact'));
     }
 
     /**
@@ -57,7 +57,7 @@ class ContactController extends Controller
     public function update(StoreContactRequest $request, Contact $contact)
     {
         $contact->update($request->validated());
-        return redirect()->route('project_management.contact.show', compact('contact'))->with('success', 'Contact updated successfully.');
+        return redirect()->route('contacts.show', compact('contact'))->with('success', 'Contact updated successfully.');
     }
 
     /**
@@ -66,6 +66,6 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         Contact::destroy($contact->id);
-        return redirect()->route('project_management.contact.index')->with('success', 'Contact deleted successfully.');
+        return redirect()->route('contacts.index')->with('success', 'Contact deleted successfully.');
     }
 }

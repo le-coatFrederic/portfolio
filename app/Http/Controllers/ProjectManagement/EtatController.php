@@ -14,7 +14,7 @@ class EtatController extends Controller
     public function index()
     {
         $etats = Etat::all();
-        return view('project_management.etat.index', compact('etats'));
+        return view('project_management.etats.index', compact('etats'));
     }
 
     /**
@@ -23,7 +23,7 @@ class EtatController extends Controller
     public function create()
     {
         $etat = new Etat();
-        return view('project_management.etat.create', compact('etat'));
+        return view('project_management.etats.create', compact('etat'));
     }
 
     /**
@@ -31,8 +31,8 @@ class EtatController extends Controller
      */
     public function store(StoreEtatRequest $request)
     {
-        Etat::created($request->validated());
-        return redirect()->route('etat.index')->with('success', 'Etat has been created successfully.');
+        Etat::create($request->validated());
+        return redirect()->route('etats.index')->with('success', 'Etat has been created successfully.');
     }
 
     /**
@@ -40,7 +40,7 @@ class EtatController extends Controller
      */
     public function show(Etat $etat)
     {
-        return view('project_management.etat.show', compact('etat'));
+        return view('project_management.etats.show', compact('etat'));
     }
 
     /**
@@ -48,7 +48,7 @@ class EtatController extends Controller
      */
     public function edit(Etat $etat)
     {
-        return view('project_management.etat.edit', compact('etat'));
+        return view('project_management.etats.edit', compact('etat'));
     }
 
     /**
@@ -57,7 +57,7 @@ class EtatController extends Controller
     public function update(StoreEtatRequest $request, Etat $etat)
     {
         $etat->update($request->validated());
-        return redirect()->route('etat.show', compact($etat))->with('success', 'Etat has been updated successfully.');
+        return redirect()->route('etats.show', compact('etat'))->with('success', 'Etat has been updated successfully.');
     }
 
     /**
@@ -66,6 +66,6 @@ class EtatController extends Controller
     public function destroy(Etat $etat)
     {
         Etat::destroy($etat->id);
-        return redirect()->route('etat.index')->with('success', 'Etat has been deleted successfully.');
+        return redirect()->route('etats.index')->with('success', 'Etat has been deleted successfully.');
     }
 }

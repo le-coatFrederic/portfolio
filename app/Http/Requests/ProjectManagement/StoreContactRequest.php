@@ -23,16 +23,16 @@ class StoreContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'firstName' => ['required', 'string', 'max:255'],
-            'lastName' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('contacts', 'email')->ignore($this->route()->parameter('contact'))],
-            'phone' => ['string', 'min:10', 'max:10', 'unique:contacts'],
-            'address' => ['string', 'max:255'],
-            'city' => ['string', 'max:255'],
-            'state' => ['string', 'max:255'],
-            'zip' => ['string', 'max:255'],
-            'company' => ['string', 'max:255'],
-            'job_title' => ['string', 'max:255'],
+            'phone' => ['nullable', 'string', 'min:10', 'max:10', 'unique:contacts'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'city' => ['nullable', 'string', 'max:255'],
+            'state' => ['nullable', 'string', 'max:255'],
+            'zip' => ['nullable', 'string', 'max:255'],
+            'company' => ['nullable', 'string', 'max:255'],
+            'job_title' => ['nullable', 'string', 'max:255'],
         ];
     }
 }
