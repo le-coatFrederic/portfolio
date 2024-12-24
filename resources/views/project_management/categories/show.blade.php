@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        <h1>Détail du contact' {{ $category->id }} : {{ $category->intitule }}</h1>
+        <h1>Détail de la catégorie {{ $category->id }} : {{ $category->intitule }}</h1>
 
         <a href="{{ route('categories.edit', ['category' => $category]) }}">Editer</a>
 
@@ -17,10 +17,10 @@
         </div>
 
         <div>
-            <label for="projects">Projects</label>
-                <div id="projects">
-                @foreach($category->projects()->get() as $project)
-                    <strong>{{ $project->intitule }}</strong>
+            <label for="subjects">Subjects</label>
+                <div id="subjects">
+                @foreach($category->subjects()->get() as $subject)
+                    <strong>{{ $subject->intitule }}</strong>
                 @endforeach
             </div>
         </div>

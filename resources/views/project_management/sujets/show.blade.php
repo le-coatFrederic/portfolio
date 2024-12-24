@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        <h1>Détail du sujet' {{ $sujet->id }} : {{ $sujet->intitule }}</h1>
+        <h1>Détail du sujet {{ $sujet->id }} : {{ $sujet->intitule }}</h1>
 
         <a href="{{ route('sujets.edit', ['sujet' => $sujet]) }}">Editer</a>
 

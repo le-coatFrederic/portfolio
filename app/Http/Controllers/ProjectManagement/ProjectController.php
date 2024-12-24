@@ -4,7 +4,9 @@ namespace App\Http\Controllers\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreProjectRequest;
+use App\Models\ProjectManagement\Etat;
 use App\Models\ProjectManagement\Project;
+use App\Models\ProjectManagement\Sujet;
 
 class ProjectController extends Controller
 {
@@ -13,7 +15,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::with('etat', 'sujet')->get();
         return view('project_management.projects.index', compact('projects'));
     }
 
@@ -23,7 +25,9 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project();
-        return view('project_management.projects.create', compact('project'));
+        $etats = Etat::all();
+        $sujets = Sujet::all();
+        return view('project_management.projects.create', compact('project', 'etats', 'sujets'));
     }
 
     /**
@@ -48,7 +52,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('project_management.projects.edit', compact('project'));
+        $etats = Etat::all();
+        $sujets = Sujet::all();
+        return view('project_management.projects.edit', compact('project', 'etats', 'sujets'));
     }
 
     /**

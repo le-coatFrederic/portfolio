@@ -22,6 +22,14 @@ return new class extends Migration
         Schema::table('projects', function (Blueprint $table) {
             $table->foreignIdFor(Etat::class)->constrained()->cascadeOnDelete();
         });
+
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->foreignIdFor(Etat::class)->constrained()->cascadeOnDelete();
+        });
+
+        Schema::table('incidents', function (Blueprint $table) {
+            $table->foreignIdFor(Etat::class)->constrained()->cascadeOnDelete();
+        });
     }
 
     /**

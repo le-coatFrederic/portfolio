@@ -1,15 +1,11 @@
 <div>
     <h1>
-        @if($sujet->id)
-            Editer ce sujet
+        @if($task->id)
+            Editer cette tâche
         @else
-            Créer un sujet
+            Créer une tâche
         @endif
     </h1>
-
-@php
-    $categoriesId = $sujet->categories()->pluck('id');
-@endphp
 
     <div class="card">
         <div class="card-body">
@@ -18,9 +14,9 @@
 
                 <div class="form-group">
                     <label for="intitule">
-                        Intitule
+                        intitule
                     </label>
-                    <input type="text" id="intitule" name="intitule" value="{{ old('intitule', $sujet->intitule) }}">
+                    <input type="text" id="intitule" name="intitule" value="{{ old('intitule', $task->intitule) }}">
                     @error("intitule")
                     {{ $message }}
                     @enderror
@@ -28,10 +24,25 @@
 
                 <div class="form-group">
                     <label for="description">
-                        Description
+                        description
                     </label>
-                    <textarea id="description" name="description">{{ old('description', $sujet->description) }}</textarea>
+                    <input type="text" id="description" name="description" value="{{ old('description', $task->description) }}">
                     @error("description")
+                    {{ $message }}
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="projectable_id">
+                        Projet
+                    </label>
+                    <select id="projectable_id" name="projectable_id">
+                        <option value="">Sélectionner un projet</option>
+                        @foreach($projets as $projet)
+                            <option @selected(old('projectable_id', $task->projectable_id)) value="{{ $projet->id }}">{{ $projet->intitule }}</option>
+                        @endforeach
+                    </select>
+                    @error("projectable_id")
                     {{ $message }}
                     @enderror
                 </div>
@@ -43,7 +54,7 @@
                     <select id="etat_id" name="etat_id">
                         <option value="">Sélectionner un état</option>
                         @foreach($etats as $etat)
-                            <option @selected(old('etat_id', $sujet->etat_id)) value="{{ $etat->id }}">{{ $etat->intitule }}</option>
+                            <option @selected(old('etat_id', $task->etat_id)) value="{{ $etat->id }}">{{ $etat->intitule }}</option>
                         @endforeach
                     </select>
                     @error("etat_id")
@@ -51,22 +62,8 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <label for="categories">
-                        Catégories
-                    </label>
-                    <select id="categories" name="categories[]" multiple>
-                        @foreach($categories as $category)
-                            <option @selected($categoriesId->contains($category->id)) value="{{ $category->id }}">{{ $category->intitule }}</option>
-                        @endforeach
-                    </select>
-                    @error("categories")
-                    {{ $message }}
-                    @enderror
-                </div>
-
                 <button class="btn" type="submit">
-                    @if($sujet->id)
+                    @if($task->id)
                         Enregistrer
                     @else
                         Créer
