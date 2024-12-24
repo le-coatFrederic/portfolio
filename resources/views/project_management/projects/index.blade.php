@@ -25,9 +25,9 @@
                     <td>{{ $project->date_fin }}</td>
                     <td>{{ $project->sujet->intitule }}</td>
                     <td>{{ $project->etat->intitule }}</td>
-                    <td><a href="{{ route('sujets.show', ['sujet' => $project]) }}">Détail</a></td>
-                    <td><a href="{{ route('sujets.edit', ['sujet' => $project]) }}">Editer</a></td>
-                    <td><a href="{{ route('sujets.delete', ['sujet' => $project]) }}">Supprimer</a></td>
+                    <td><a href="{{ route('projects.show', ['project' => $project]) }}">Détail</a></td>
+                    <td><a href="{{ route('projects.edit', ['project' => $project]) }}">Editer</a></td>
+                    <td><a href="{{ route('projects.delete', ['project' => $project]) }}">Supprimer</a></td>
                 </tr>
             @endforeach
             </tbody>

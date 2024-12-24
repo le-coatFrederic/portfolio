@@ -5,6 +5,7 @@ namespace App\Models\ProjectManagement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Action extends Model
 {
@@ -12,12 +13,12 @@ class Action extends Model
     use HasFactory;
 
     protected $fillable = [
+        'type',
         'description',
         'date',
-        'back_log_entity_id'
     ];
 
-    public function back_log_entity(): BelongsTo {
-        return $this->belongsTo(BackLogEntity::class);
+    public function actionable(): MorphTo {
+        return $this->morphTo();
     }
 }

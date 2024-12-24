@@ -56,7 +56,12 @@
                     <label for="sujet_id">
                         Sujet
                     </label>
-                    <input id="sujet_id" name="sujet_id" type="number" value="{{ old('sujet_id', $project->sujet()->intitule }}"/>
+                    <select id="sujet_id" name="sujet_id">
+                        <option value="">Sélectionner un sujet</option>
+                        @foreach($sujets as $sujet)
+                            <option @selected(old('sujet_id', $project->sujet_id)) value="{{ $sujet->id }}">{{ $sujet->intitule }}</option>
+                        @endforeach
+                    </select>
                     @error("sujet_id")
                     {{ $message }}
                     @enderror
@@ -66,7 +71,12 @@
                     <label for="etat_id">
                         Etat
                     </label>
-                    <textarea id="etat_id" name="etat_id">{{ old('etat_id', $project->etat_id) }}</textarea>
+                    <select id="etat_id" name="etat_id">
+                        <option value="">Sélectionner un état</option>
+                        @foreach($etats as $etat)
+                            <option @selected(old('etat_id', $project->etat_id)) value="{{ $etat->id }}">{{ $etat->intitule }}</option>
+                        @endforeach
+                    </select>
                     @error("etat_id")
                     {{ $message }}
                     @enderror

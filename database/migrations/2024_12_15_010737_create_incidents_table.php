@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('intitule');
             $table->longText('description');
+            $table->morphs('incidentable');
         });
     }
 

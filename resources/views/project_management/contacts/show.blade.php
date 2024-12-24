@@ -2,18 +2,18 @@
 
 @section('content')
     <div>
-        <h1>Détail du contact' {{ $contact->id }} : {{ $contact->first_name }} {{ $contact->last_name }}</h1>
+        <h1>Détail du contact {{ $contact->id }} : {{ $contact->first_name }} {{ $contact->last_name }}</h1>
 
         <a href="{{ route('contacts.edit', ['contact' => $contact]) }}">Editer</a>
 
         <div>
             <label for="firstname">Firstname</label>
-            <p id="firstname">{{ $contact->firstname }}</p>
+            <p id="firstname">{{ $contact->first_name }}</p>
         </div>
 
         <div>
             <label for="lastname">Lastname</label>
-                <p id="lastname">{{ $contact->lastname }}</p>
+                <p id="lastname">{{ $contact->last_name }}</p>
         </div>
 
         <div>
@@ -28,7 +28,7 @@
 
         <div>
             <label for="companny">Company</label>
-            <p id="companny">{{ $contact->companny }}</p>
+            <p id="companny">{{ $contact->company }}</p>
         </div>
 
         <div>

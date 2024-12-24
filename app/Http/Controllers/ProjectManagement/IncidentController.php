@@ -4,7 +4,9 @@ namespace App\Http\Controllers\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreIncidentRequest;
+use App\Models\ProjectManagement\Etat;
 use App\Models\ProjectManagement\Incident;
+use App\Models\ProjectManagement\Project;
 
 class IncidentController extends Controller
 {
@@ -13,7 +15,7 @@ class IncidentController extends Controller
      */
     public function index()
     {
-        $incidents = Incident::all();
+        $incidents = Incident::with('etat')->get();
         return view('project_management.incidents.index', compact('incidents'));
     }
 
@@ -23,7 +25,9 @@ class IncidentController extends Controller
     public function create()
     {
         $incident = new Incident();
-        return view('project_management.incidents.create', compact('incident'));
+        $etats = Etat::all();
+        $projets = Project::all();
+        return view('project_management.incidents.create', compact('incident', 'etats', 'projets'));
     }
 
     /**
@@ -31,7 +35,9 @@ class IncidentController extends Controller
      */
     public function store(StoreIncidentRequest $request)
     {
-        Incident::create($request->validated());
+        $project = Project::findOrFail($request->validated()['projectable_id']);
+        $project->incidents()->create($request->validated());
+
         return redirect()->route('incidents.index');
     }
 
@@ -48,7 +54,9 @@ class IncidentController extends Controller
      */
     public function edit(Incident $incident)
     {
-        return view('project_management.incidents.edit', compact('incident'));
+        $etats = Etat::all();
+        $projets = Project::all();
+        return view('project_management.incidents.edit', compact('incident', 'etats', 'projets'));
     }
 
     /**
@@ -56,6 +64,11 @@ class IncidentController extends Controller
      */
     public function update(StoreIncidentRequest $request, Incident $incident)
     {
+        if ($incident->projectable_id != $request->validated()['projectable_id']) {
+            $projet = Project::findOrFail($request->validated()['projectable_id']);
+            $incident->projectable()->associate($projet);
+        }
+
         $incident->update($request->validated());
         return redirect()->route('incidents.show', compact('incident'))->with('success', 'Incident updated successfully');
     }
