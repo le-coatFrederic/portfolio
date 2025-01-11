@@ -22,9 +22,11 @@ class StoreActionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'description' => ['required', 'string', 'max:255', 'min:12'],
+            'type' => ['required', 'string'],
+            'description' => ['required', 'string', 'max:255', 'min:4'],
             'date' => ['required', 'date'],
-            'back_log_entity_id' => ['required', 'integer', 'exists:back_log_entities,id'],
+            'actionable_type' => ['required'],
+            'actionable_id' => ['required', 'string'],
         ];
     }
 }

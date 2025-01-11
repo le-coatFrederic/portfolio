@@ -19,7 +19,9 @@
                     <td>{{ $task->id }}</td>
                     <td>{{ $task->intitule }}</td>
                     <td>{{ $task->description }}</td>
-                    <td>{{ $task->projectable->intitule }}</td>
+                    <td>{{ $task->deadline }}</td>
+                    <td>{{ $task->status }}</td>
+                    <td>{{ $task->project->intitule }}</td>
                     <td>{{ $task->etat->intitule }}</td>
                     <td><a href="{{ route('tasks.show', ['task' => $task]) }}">Détail</a></td>
                     <td><a href="{{ route('tasks.edit', ['task' => $task]) }}">Editer</a></td>

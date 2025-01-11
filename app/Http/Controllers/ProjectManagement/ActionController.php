@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreActionRequest;
 use App\Http\Requests\ProjectManagement\UpdateActionRequest;
 use App\Models\ProjectManagement\Action;
+use App\Models\ProjectManagement\Incident;
+use App\Models\ProjectManagement\Task;
 
 class ActionController extends Controller
 {
@@ -14,7 +16,14 @@ class ActionController extends Controller
      */
     public function index()
     {
-        $actions = Action::all();
+        $actions = Action::with('actionable')
+            ->whereHas('actionable', function ($query) {
+                $query->whereHas('project', function ($query) {});
+            })
+            ->orderBy('project.id', 'asc')
+            ->get();
+        dd($actions);
+
         return view('project_management.actions.index', compact('actions'));
     }
 
@@ -32,8 +41,17 @@ class ActionController extends Controller
      */
     public function store(StoreActionRequest $request)
     {
-        Action::create($request->validated());
-        return redirect()->route('actions.index')->with('success', 'Action created successfully.');
+        $actionable = null;
+        if ($request->validated()['actionable_type'] == Task::class) {
+            $actionable = Task::findOrFail($request->validated()['actionable_id']);
+        } elseif ($request->validated()['actionable_type'] == Incident::class) {
+            $actionable = Incident::findOrFail($request->validated()['actionable_id']);
+        } else {
+            return redirect()->back()->with('success', 'ERROR : This model is not actionable !');
+        }
+
+        $actionable->actions()->create($request->validated());
+        return redirect()->back()->with('success', 'Action created successfully.');
     }
 
     /**
@@ -47,9 +65,9 @@ class ActionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Action $action)
+    public function edit(Action $action, Incident|Task $actionable, string $type)
     {
-        return view('project_management.actions.edit', compact('action'));
+        return view('project_management.actions.edit', compact('action', 'actionable', 'type'));
     }
 
     /**
@@ -67,6 +85,6 @@ class ActionController extends Controller
     public function destroy(Action $action)
     {
         Action::destroy($action->id);
-        return redirect()->route('actions.index')->with('success', 'Action deleted successfully.');
+        return redirect()->back()->with('success', 'Action deleted successfully.');
     }
 }

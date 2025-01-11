@@ -30,8 +30,8 @@ class Incident extends Model
         return $this->belongsTo(Etat::class);
     }
 
-    public function projectable(): MorphTo {
-        return $this->morphTo();
+    public function project(): BelongsTo {
+        return $this->belongsTo(Project::class);
     }
 
     public function actions(): MorphMany {

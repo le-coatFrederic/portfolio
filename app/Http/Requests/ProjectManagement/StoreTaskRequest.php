@@ -3,6 +3,7 @@
 namespace App\Http\Requests\ProjectManagement;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreTaskRequest extends FormRequest
 {
@@ -26,6 +27,8 @@ class StoreTaskRequest extends FormRequest
             'description' => ['required', 'string', 'max:255'],
             'deadline' => ['required', 'date', 'after_or_equal:today'],
             'status' => ['string', 'max:255'],
+            'project_id' => ['required', 'integer', 'exists:projects,id'],
+            'etat_id' => ['required', 'integer', 'exists:etats,id'],
         ];
     }
 }

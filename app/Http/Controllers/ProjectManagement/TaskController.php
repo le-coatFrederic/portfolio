@@ -4,6 +4,8 @@ namespace App\Http\Controllers\ProjectManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectManagement\StoreTaskRequest;
+use App\Models\ProjectManagement\Etat;
+use App\Models\ProjectManagement\Project;
 use App\Models\ProjectManagement\Task;
 
 class TaskController extends Controller
@@ -13,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::with('etat')->where('etat_id', "<>", "2")->orderBy('deadline', 'desc')->get();
         return view('project_management.tasks.index', compact('tasks'));
     }
 
@@ -23,7 +25,9 @@ class TaskController extends Controller
     public function create()
     {
         $task = new Task();
-        return view('project_management.tasks.create', compact('task'));
+        $etats = Etat::all();
+        $projets = Project::all();
+        return view('project_management.tasks.create', compact('task', 'etats', 'projets'));
     }
 
     /**
@@ -48,7 +52,9 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('project_management.tasks.edit', compact('task'));
+        $etats = Etat::all();
+        $projets = Project::all();
+        return view('project_management.tasks.edit', compact('task', 'etats', 'projets'));
     }
 
     /**
