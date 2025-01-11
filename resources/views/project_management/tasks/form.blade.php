@@ -33,16 +33,36 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="projectable_id">
+                    <label for="deadline">
+                        deadline
+                    </label>
+                    <input type="date" id="deadline" name="deadline" value="{{ old('deadline', $task->deadline) }}">
+                    @error("deadline")
+                    {{ $message }}
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="status">
+                        status
+                    </label>
+                    <input type="text" id="status" name="status" value="{{ old('status', $task->status) }}">
+                    @error("status")
+                    {{ $message }}
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="project_id">
                         Projet
                     </label>
-                    <select id="projectable_id" name="projectable_id">
+                    <select id="project_id" name="project_id">
                         <option value="">Sélectionner un projet</option>
                         @foreach($projets as $projet)
-                            <option @selected(old('projectable_id', $task->projectable_id)) value="{{ $projet->id }}">{{ $projet->intitule }}</option>
+                            <option @selected(old('project_id', $task->project_id)) value="{{ $projet->id }}">{{ $projet->intitule }}</option>
                         @endforeach
                     </select>
-                    @error("projectable_id")
+                    @error("project_id")
                     {{ $message }}
                     @enderror
                 </div>

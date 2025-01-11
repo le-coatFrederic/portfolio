@@ -33,16 +33,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="projectable_id">
+                    <label for="project_id">
                         Projet
                     </label>
-                    <select id="projectable_id" name="projectable_id">
+                    <select id="project_id" name="project_id">
                         <option value="">Sélectionner un projet</option>
                         @foreach($projets as $projet)
-                            <option @selected(old('projectable_id', $incident->projectable_id)) value="{{ $projet->id }}">{{ $projet->intitule }}</option>
+                            <option @selected(old('project_id', $incident->project_id)) value="{{ $projet->id }}">{{ $projet->intitule }}</option>
                         @endforeach
                     </select>
-                    @error("projectable_id")
+                    @error("project_id")
                     {{ $message }}
                     @enderror
                 </div>

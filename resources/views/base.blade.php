@@ -1,4 +1,4 @@
-<!doctype html>
+- -<!doctype html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -14,9 +14,9 @@
             <li><a href="{{ route('sujets.index') }}">Sujets</a></li>
             <li><a href="{{ route('projects.index') }}">Projets</a></li>
             <li><a href="{{ route('incidents.index') }}">Incidents</a></li>
-            <li><a href="{{ route('tickets.index') }}">Tickets</a></li>
             <li><a href="{{ route('tasks.index') }}">Tâches</a></li>
             <li><a href="{{ route('actions.index') }}">Actions</a></li>
+            <li><a href="{{ route('tickets.index') }}">Tickets</a></li>
         </ul>
     </nav>
 

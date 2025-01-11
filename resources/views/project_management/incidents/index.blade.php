@@ -19,7 +19,7 @@
                     <td>{{ $incident->id }}</td>
                     <td>{{ $incident->intitule }}</td>
                     <td>{{ $incident->description }}</td>
-                    <td>{{ $incident->projectable->intitule }}</td>
+                    <td>{{ $incident->project->intitule }}</td>
                     <td>{{ $incident->etat->intitule }}</td>
                     <td><a href="{{ route('incidents.show', ['incident' => $incident]) }}">Détail</a></td>
                     <td><a href="{{ route('incidents.edit', ['incident' => $incident]) }}">Editer</a></td>

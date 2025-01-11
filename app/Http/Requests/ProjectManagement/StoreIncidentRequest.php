@@ -25,7 +25,7 @@ class StoreIncidentRequest extends FormRequest
         return [
             'intitule' => ['required', 'string', 'max:255', Rule::unique('incidents', 'intitule')->ignore($this->route()->parameter('incident'))],
             'description' => ['required', 'string', 'max:255'],
-            'projectable_id' => ['required', 'integer', 'exists:projects,id'],
+            'project_id' => ['required', 'integer', 'exists:projects,id'],
             'etat_id' => ['required', 'integer', 'exists:etats,id'],
         ];
     }

@@ -35,9 +35,7 @@ class IncidentController extends Controller
      */
     public function store(StoreIncidentRequest $request)
     {
-        $project = Project::findOrFail($request->validated()['projectable_id']);
-        $project->incidents()->create($request->validated());
-
+        Incident::create($request->validated());
         return redirect()->route('incidents.index');
     }
 
@@ -64,11 +62,6 @@ class IncidentController extends Controller
      */
     public function update(StoreIncidentRequest $request, Incident $incident)
     {
-        if ($incident->projectable_id != $request->validated()['projectable_id']) {
-            $projet = Project::findOrFail($request->validated()['projectable_id']);
-            $incident->projectable()->associate($projet);
-        }
-
         $incident->update($request->validated());
         return redirect()->route('incidents.show', compact('incident'))->with('success', 'Incident updated successfully');
     }
