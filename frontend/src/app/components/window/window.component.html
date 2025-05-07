@@ -1,0 +1,11 @@
+<div class="window" [style.top.px]="top" [style.left.px]="left" [style.width.px]="width" [style.height.px]="height">
+    <div class="window-header" (mousedown)="isDraggable && startDrag($event)">
+        <div class="window-title">{{ title }}</div>
+        <div class="window-controls">
+            <button *ngIf="isCloseable" class="window-close" (click)="close()">×</button>
+        </div>
+    </div>
+    <div class="window-content">
+        <ng-content></ng-content>
+    </div>
+</div>

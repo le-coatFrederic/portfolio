@@ -1,0 +1,53 @@
+.window {
+    position: fixed;
+    background: white;
+    border-image: linear-gradient(to top, blue 90%, cyan) 1;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-width: 300px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.window-header {
+    background: linear-gradient(to top, cyan 5%, blue 80%, cyan);
+    padding: 8px;
+    display: flex;
+    border-radius: 16px 16px 0 0;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+}
+
+.window-title {
+    font-weight: bold;
+    color: white;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.window-close {
+    background: radial-gradient(circle, red 50%, white);
+    border: none;
+    aspect-ratio: 1;
+    border-radius: 30%;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 8px;
+}
+
+.window-close:hover {
+    background: radial-gradient(circle, white, red 80%);
+}
+
+.window-content {
+    padding: 16px;
+    flex: 1;
+    overflow: auto;
+}
+
+
