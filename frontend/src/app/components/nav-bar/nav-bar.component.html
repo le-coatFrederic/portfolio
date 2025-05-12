@@ -1,16 +1,15 @@
-
 <div class="bar">
   <nav class="bottom nav-bar">
     <a class="home nav-item" (click)="toggleHomeMenu()">
       <img src="house.png" alt="home icon" />
       <p>Home</p>
     </a>
-    <a class="nav-item" (click)="openWindow({ id: 'projects', title: 'Projects', content: 'Projects', top: 0, left: 0, width: 300, height: 300, isResizable: true, isDraggable: true, isCloseable: true })">
+    <a class="nav-item" (click)="openWindow({ id: 'projects', title: 'Projects', content: ProjectComponent, top: 50, left: 50, width: 500, height: 300, isResizable: false, isDraggable: true, isCloseable: true })">
       <p>Projects</p>
     </a>
-    <a class="nav-item" (click)="openWindow({ id: 'resume', title: 'Resume', content: 'Resume', top: 0, left: 0, width: 300, height: 300, isResizable: true, isDraggable: true, isCloseable: true })">
+    <!--<a class="nav-item" (click)="openWindow({ id: 'resume', title: 'Resume', content: Resume, top: 0, left: 0, width: 450, height: 600, isResizable: true, isDraggable: true, isCloseable: true })">
       <p>Resume</p>
-    </a>
+    </a>-->
   </nav>
   <app-home-menu *ngIf="isHomeMenuVisible"></app-home-menu>
 </div>

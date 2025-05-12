@@ -1,7 +1,9 @@
+import { Type } from '@angular/core';
+
 export interface Window {
     id: string,
     title: string,
-    content: string,
+    content: Type<any>,
     top: number,
     left: number,
     width: number,

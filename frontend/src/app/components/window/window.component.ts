@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewContainerRef, ComponentRef, OnInit, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Window } from '../../models/Window';
 
 @Component({
   selector: 'app-window',
@@ -8,34 +9,41 @@ import { CommonModule } from '@angular/common';
   templateUrl: './window.component.html',
   styleUrl: './window.component.css'
 })
-export class WindowComponent {
-  @Input() title: string = 'Window';
-  @Input() top: number = 0;
-  @Input() left: number = 0;
-  @Input() width: number = 300;
-  @Input() height: number = 200;
-  @Input() isResizable: boolean = true;
-  @Input() isDraggable: boolean = true;
-  @Input() isCloseable: boolean = true;
-  @Input() content: string = '';
+export class WindowComponent implements OnInit {
+  @Input() window!: Window;
   @Output() onClose = new EventEmitter<void>();
 
   private isDragging = false;
   private dragOffset = { x:0, y:0 };
+  private componentRef?: ComponentRef<any>;
+  
+  constructor(private viewContainerRef: ViewContainerRef) {}
+
+  ngOnInit() {
+    if (this.window.content) {
+      this.componentRef = this.viewContainerRef.createComponent(this.window.content);
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.componentRef) {
+      this.componentRef.destroy();
+    }
+  }
   
   startDrag(event: MouseEvent) {
-    if (!this.isDraggable) return;
+    if (!this.window.isDraggable) return;
     
     this.isDragging = true;
     this.dragOffset = {
-      x: event.clientX - this.left,
-      y: event.clientY - this.top
+      x: event.clientX - this.window.left,
+      y: event.clientY - this.window.top
     };
     
     const mouseMoveHandler = (event: MouseEvent) => {
       if (this.isDragging) {
-        this.left = event.clientX - this.dragOffset.x;
-        this.top = event.clientY - this.dragOffset.y;
+        this.window.left = event.clientX - this.dragOffset.x;
+        this.window.top = event.clientY - this.dragOffset.y;
       }
     };
 
@@ -51,5 +59,5 @@ export class WindowComponent {
 
   close() {
     this.onClose.emit();
-  }  
+  }
 }

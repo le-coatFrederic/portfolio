@@ -1,15 +1,7 @@
 <div class="window-manager">
   <ng-container *ngFor="let window of windows">
     <app-window
-     [title]="window.title"
-     [top]="window.top || 0"
-     [left]="window.left || 0"
-     [width]="window.width || 300"
-     [height]="window.height || 200"
-     [isResizable]="window.isResizable || true"
-     [isDraggable]="window.isDraggable || true"
-     [isCloseable]="window.isCloseable || true"
-     [content]="window.content"
+     [window]="window"
      (onClose)="closeWindow(window.id)"
      (onResize)="resizeWindow(window.id, $event)"
      ></app-window>

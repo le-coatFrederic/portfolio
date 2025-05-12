@@ -4,7 +4,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { WindowManagerComponent } from './components/window-manager/window-manager.component';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavBarComponent, WindowManagerComponent],
+  imports: [NavBarComponent, WindowManagerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
