@@ -8,6 +8,7 @@ import online.fredinfo.portfolio.services.TechService;
 import online.fredinfo.portfolio.services.SkillService;
 import online.fredinfo.portfolio.services.ImageService;
 import java.util.stream.Collectors;
+import java.util.HashSet;
 
 @Component
 public class ProjectMapper {
@@ -17,7 +18,6 @@ public class ProjectMapper {
     private final ImageMapper imageMapper;
     private final TechService techService;
     private final SkillService skillService;
-    private final ImageService imageService;
 
     public ProjectMapper(TechMapper techMapper, SkillMapper skillMapper, ImageMapper imageMapper, 
             TechService techService, SkillService skillService, ImageService imageService) {
@@ -26,7 +26,6 @@ public class ProjectMapper {
         this.imageMapper = imageMapper;
         this.techService = techService;
         this.skillService = skillService;
-        this.imageService = imageService;
     }
 
     public Project toEntity(ProjectFormDTO dto) {
@@ -43,9 +42,6 @@ public class ProjectMapper {
             .collect(Collectors.toSet()));
         project.setSkills(dto.skillIds().stream()
             .map(id -> skillService.getSkillById(id).orElseThrow(() -> new RuntimeException("Skill not found")))
-            .collect(Collectors.toSet()));
-        project.setImages(dto.imageIds().stream()
-            .map(id -> imageMapper.fromDTO(imageService.findById(id)))
             .collect(Collectors.toSet()));
         return project;
     }
@@ -66,9 +62,9 @@ public class ProjectMapper {
             entity.getSkills().stream()
                 .map(skillMapper::toDTO)
                 .collect(Collectors.toSet()),
-            entity.getImages().stream()
+            entity.getImages() != null ? entity.getImages().stream()
                 .map(imageMapper::toDTO)
-                .collect(Collectors.toSet())
+                .collect(Collectors.toSet()) : new HashSet<>()
         );
     }
 

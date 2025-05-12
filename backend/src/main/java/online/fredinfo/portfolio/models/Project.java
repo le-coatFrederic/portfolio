@@ -55,7 +55,7 @@ public class Project {
     private Set<Image> images;
 
     public Project(String name, String description, String url, String github, ProjectStatus status,
-            LocalDate startDate, LocalDate endDate, Set<Tech> techs, Set<Skill> skills, Set<Image> images) {
+            LocalDate startDate, LocalDate endDate, Set<Tech> techs, Set<Skill> skills) {
         this.name = name;
         this.description = description;
         this.url = url;
@@ -65,6 +65,5 @@ public class Project {
         this.endDate = endDate;
         this.techs = techs;
         this.skills = skills;
-        this.images = images;
     }
 }

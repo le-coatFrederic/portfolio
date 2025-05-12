@@ -14,6 +14,5 @@ public record ProjectFormDTO(
     LocalDate startDate,
     LocalDate endDate,
     Set<Long> techIds,
-    Set<Long> skillIds,
-    Set<Long> imageIds
+    Set<Long> skillIds
 ) {} 
