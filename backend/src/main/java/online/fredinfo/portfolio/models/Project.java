@@ -1,14 +1,19 @@
 package online.fredinfo.portfolio.models;
 
+import java.time.LocalDate;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,12 +30,14 @@ public class Project {
     private Long id;
     private String name;
     private String description;
-    private String image;
     private String url;
     private String github;
-    private String status;
-    private String startDate;
-    private String endDate;
+    
+    @Enumerated(EnumType.STRING)
+    private ProjectStatus status;
+    
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @ManyToMany
     @JoinTable(name = "project_techs",
@@ -44,11 +51,13 @@ public class Project {
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private Set<Skill> skills;
 
-    public Project(String name, String description, String image, String url, String github, String status,
-            String startDate, String endDate, Set<Tech> techs, Set<Skill> skills) {
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Image> images;
+
+    public Project(String name, String description, String url, String github, ProjectStatus status,
+            LocalDate startDate, LocalDate endDate, Set<Tech> techs, Set<Skill> skills, Set<Image> images) {
         this.name = name;
         this.description = description;
-        this.image = image;
         this.url = url;
         this.github = github;
         this.status = status;
@@ -56,7 +65,6 @@ public class Project {
         this.endDate = endDate;
         this.techs = techs;
         this.skills = skills;
+        this.images = images;
     }
-
-    
 }

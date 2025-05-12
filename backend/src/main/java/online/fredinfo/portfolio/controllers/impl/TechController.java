@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import online.fredinfo.portfolio.controllers.api.TechApi;
+import online.fredinfo.portfolio.dto.TechDetailDTO;
+import online.fredinfo.portfolio.dto.TechFormDTO;
+import online.fredinfo.portfolio.mappers.TechMapper;
 import online.fredinfo.portfolio.models.Tech;
 import online.fredinfo.portfolio.services.TechService;
 
@@ -15,45 +18,56 @@ public class TechController implements TechApi {
 
     @Autowired
     private TechService techService;
+    @Autowired
+    private TechMapper techMapper;
 
     @Override
     @GetMapping
-    public ResponseEntity<List<Tech>> getAllTechs() {
-        return ResponseEntity.ok(techService.getAllTechs());
+    public ResponseEntity<List<TechDetailDTO>> getAllTechs() {
+        return ResponseEntity.ok(techService.getAllTechs().stream()
+                .map(techMapper::toDTO)
+                .toList());
     }
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<Tech> getTechById(@PathVariable Long id) {
+    public ResponseEntity<TechDetailDTO> getTechById(@PathVariable Long id) {
         return techService.getTechById(id)
-                .map(ResponseEntity::ok)
+                .map(tech -> ResponseEntity.ok(techMapper.toDTO(tech)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @Override
     @GetMapping("/search/name")
-    public ResponseEntity<List<Tech>> getTechsByName(@RequestParam String name) {
-        return ResponseEntity.ok(techService.getTechsByName(name));
+    public ResponseEntity<List<TechDetailDTO>> getTechsByName(@RequestParam String name) {
+        return ResponseEntity.ok(techService.getTechsByName(name).stream()
+                .map(techMapper::toDTO)
+                .toList());
     }
 
     @Override
     @GetMapping("/search/project/{projectId}")
-    public ResponseEntity<List<Tech>> getTechsByProject(@PathVariable Long projectId) {
-        return ResponseEntity.ok(techService.getTechsByProject(projectId));
+    public ResponseEntity<List<TechDetailDTO>> getTechsByProject(@PathVariable Long projectId) {
+        return ResponseEntity.ok(techService.getTechsByProject(projectId).stream()
+                .map(techMapper::toDTO)
+                .toList());
     }
 
     @Override
     @PostMapping
-    public ResponseEntity<Tech> createTech(@RequestBody Tech tech) {
-        return ResponseEntity.ok(techService.createTech(tech));
+    public ResponseEntity<TechDetailDTO> createTech(@RequestBody TechFormDTO tech) {
+        Tech techEntity = techMapper.toEntity(tech);
+        techEntity = techService.createTech(techEntity);
+        return ResponseEntity.ok(techMapper.toDTO(techEntity));
     }
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<Tech> updateTech(@PathVariable Long id, @RequestBody Tech tech) {
-        Tech updatedTech = techService.updateTech(id, tech);
+    public ResponseEntity<TechDetailDTO> updateTech(@PathVariable Long id, @RequestBody TechFormDTO tech) {
+        Tech techEntity = techMapper.toEntity(tech);
+        Tech updatedTech = techService.updateTech(id, techEntity);
         if (updatedTech != null) {
-            return ResponseEntity.ok(updatedTech);
+            return ResponseEntity.ok(techMapper.toDTO(updatedTech));
         }
         return ResponseEntity.notFound().build();
     }
