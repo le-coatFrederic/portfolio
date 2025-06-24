@@ -26,11 +26,17 @@ html, body {
   background-color: var(--background-primary-color);
 }
 
+h1, h2, h3 {
+  padding: 0;
+  margin: 0;
+}
+
 .card {
   color: var(--card-text);
   background-color: var(--card-background);
 
-  border: var(--card-text) solid 4px;
+  padding: 16px;
+  border: var(--text-tertiary--color) solid 2px;
 }
 
 .btn {
