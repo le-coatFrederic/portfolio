@@ -1,0 +1,24 @@
+<div class="content">
+  <h1>Mes projets</h1>
+  <div class="dashboard">
+    <h2>Tableau de bord</h2>
+    <ul class="dashboard-list">
+      @for (stat of this.stats; track stat.title) {
+        <li>
+          <p class="stat-name">{{ stat.title }}</p>
+          <p class="stat-value">{{ stat.value }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+  <div class="projects">
+    <h2>Liste des projets</h2>
+    <div class="project-list">
+      @for (project of this.projects; track project.id) {
+        <a routerLink="/projects/{{ project.title.toLowerCase() }}">
+          <app-project-card [project]="project"></app-project-card>
+        </a>
+        }
+    </div>
+  </div>
+</div>

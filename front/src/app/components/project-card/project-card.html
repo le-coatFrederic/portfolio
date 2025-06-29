@@ -1,0 +1,43 @@
+<div class="content">
+  <div class="top">
+    <div class="title-part">
+      <h3>{{ this.project.title }}</h3>
+      <div class="status">
+        @switch (project.status) {
+          @case (ProjectStatus.DONE) {
+            <p class="project-status green-bg">
+              Status : {{ project.status }}
+            </p>
+          }
+          @case (ProjectStatus.STARTING) {
+            <p class="project-status red-bg">
+              Status : {{ project.status }}
+            </p>
+          }
+          @default {
+            <p class="project-status yellow-bg">
+              Status : {{ project.status }}
+            </p>
+          }
+        }
+      </div>
+    </div>
+    <div class="tools">
+      @for (tool of project.tools; track tool.id) {
+        <p>{{ tool.title }}</p>
+      }
+    </div>
+    <!--
+    <div class="skills">
+      @for (skill of project.skills; track skill.id) {
+        <p>{{ skill.title }}</p>
+      }
+    </div>
+    -->
+  </div>
+  <div class="center">
+    <p>
+      {{ project.description }}
+    </p>
+  </div>
+</div>

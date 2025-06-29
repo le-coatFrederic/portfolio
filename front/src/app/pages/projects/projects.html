@@ -1,0 +1,16 @@
+<main>
+  @switch (slug) {
+    @case ('home') {
+      <app-home></app-home>
+    }
+    @case ('portfolio') {
+      <app-portfolio></app-portfolio>
+    }
+    @case ('ansiweb') {
+      <app-ansiweb></app-ansiweb>
+    }
+    @default {
+      <p>Projet non trouvé</p>
+    }
+  }
+</main>

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --small-gap: 8px;
+  --medium-gap: 16px;
+  --large-gap: 24px;
+  --very-large-gap: 40px;
+
+  --navbar-height: 48px;
+  --main-card-height: 200px;
+
+  --subtitle-line-width-in-percent: 90%;
+
+  --font-color-main: #000000;
+  --font-color-secondary: #FFFFFF;
+
+  --color-main: #EB2A64;
+  --color-secondary: #2AEB40;
+  --color-tertiary: #7B3B4E;
+}
+
+html, body {
+  font-family: 'Inter';
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: var(--color-main);
+}
+
+.contact-btn {
+  background-color: var(--color-main);
+  color: var(--font-color-secondary);
+  border: solid 2px var(--color-tertiary);
+  border-radius: var(--small-gap);
+  text-decoration: none;
+}
+
+.contact-btn:hover {
+  cursor: pointer;
+  border: solid 2px var(--color-main);
+  background-color: var(--color-tertiary);
+}
+
+.subtitle {
+  color: #888;
+  font-style: italic;
+  max-width: fit-content;
+
+  display: inline;
+  background: linear-gradient(to right, #888 var(--subtitle-line-width-in-percent), transparent var(--subtitle-line-width-in-percent));
+  background-repeat: no-repeat;
+  background-size: var(--subtitle-line-width-in-percent) 2px;
+  background-position: calc(var(--subtitle-line-width-in-percent) / 2) 100%;
+  padding-bottom: 2px;
+}

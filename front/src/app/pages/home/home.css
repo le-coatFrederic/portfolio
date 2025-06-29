@@ -1,0 +1,101 @@
+.content {
+  display: grid;
+  grid-template-areas: "presentation image stats";
+  grid-template-columns: 1fr 360px 1fr;
+  gap: var(--large-gap);
+
+  width: 100%;
+  height: max-content;
+  overflow: hidden;
+  margin-top: var(--medium-gap);
+
+  align-self: center;
+  align-content: center;
+  align-items: center;
+}
+
+.main-card {
+  border-radius: var(--medium-gap);
+  padding: var(--very-large-gap);
+  width: 240px;
+  height: var(--main-card-height);
+  justify-self: center;
+  align-self: center;
+}
+
+#presentation {
+  background-color: #EEE;
+  display: flex;
+  flex-direction: column;
+  grid-area: presentation;
+}
+
+#top {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin: 0;
+}
+
+#bottom {
+  display: flex;
+  flex-direction: row;
+  gap: var(--medium-gap);
+  align-items: center;
+}
+
+#resume {
+  color: var(--color-main);
+}
+
+#presentation-contact-btn {
+  padding: var(--medium-gap);
+}
+
+#picture {
+  grid-area: image;
+  align-content: center;
+  justify-self: center;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+#home-picture {
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  height: 100%;
+}
+
+#stats {
+  grid-area: stats;
+  background-color: #EEE;
+}
+
+#stats-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--medium-gap);
+
+  justify-content: center;
+}
+
+.stat-value {
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
+
+  color: var(--color-main);
+}
+
+.stat-name {
+  margin: 0;
+  padding: 0;
+}
