@@ -1,0 +1,27 @@
+.content {
+  display: flex;
+  flex-direction: row;gap: var(--medium-gap);
+  flex-wrap: wrap;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+section {
+  background-color: #EEE;
+  border-radius: var(--medium-gap);
+  padding: var(--small-gap);
+  flex-grow: 1;
+  min-width: 300px;
+}
+
+h2, p {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  list-style: outside image('assets/fleche.png');
+}
