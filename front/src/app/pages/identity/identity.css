@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: row;gap: var(--medium-gap);
   flex-wrap: wrap;
+
+  text-align: justify;
 }
 
 .bold {
@@ -9,11 +11,13 @@
 }
 
 section {
-  background-color: #EEE;
   border-radius: var(--medium-gap);
   padding: var(--small-gap);
   flex-grow: 1;
   min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--medium-gap);
 }
 
 h2, p {
@@ -23,5 +27,35 @@ h2, p {
 
 ul {
   margin: 0;
-  list-style: outside image('assets/fleche.png');
+  padding: 0 var(--medium-gap);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--medium-gap);
+}
+
+.skill-card {
+  background-color: #EEE;
+  border-radius: var(--small-gap);
+}
+
+.skill-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--color-main);
+  border-radius: var(--small-gap) var(--small-gap) 0 0;
+  color: #FFFFFF;
+  padding: var(--small-gap);
+}
+
+.skill-desc {
+  padding: var(--small-gap);
+  color: #555;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.skill-bot {
+  padding: var(--small-gap);
 }

@@ -2,50 +2,37 @@
 <div class="content">
   <section>
     <h2>Compétences</h2>
-    <h3>Transversales</h3>
+    <!--<h3>Transversales</h3>
     <ul>
-    </ul>
+    </ul>-->
 
     <h3>Méthodologiques et techniques</h3>
     <ul>
-      <li>
-        <p class="bold">Maîtrise des méthodes de projet : </p>
-        <p>J'ai travaillé sur les méthodes les plus populaires telles que Agile (projets EDI), Cascade (projet portfolio, CRM), Scrum (projet RLA), Kanban (<a routerLink="/projects/ansiweb">AnSiWeb</a>)</p>
-      </li>
-      <li>
-        <p class="bold"></p>
-        <p></p>
-      </li>
-      <li>
-        <p class="bold"></p>
-        <p></p>
-      </li>
-      <li>
-        <p class="bold"></p>
-        <p></p>
-      </li>
-      <li>
-        <p class="bold"></p>
-        <p></p>
-      </li>
-      <li>
-        <p class="bold"></p>
-        <p></p>
-      </li>
-    </ul>
-
-    <h3>Développement d'applications</h3>
-    <ul>
-      <li></li>
+      @for (skill of this.skills; track skills) {
+        <li>
+          <div class="skill-card">
+            <div class="bold skill-top">
+              <p class="title">{{skill.title}}</p>
+              <p>{{skill.mastering}}</p>
+            </div>
+            <div class="skill-desc">
+              <p>{{skill.description}}</p>
+            </div>
+            <div class="skill-bot">
+              <p>{{skill.proof}}</p>
+            </div>
+          </div>
+        </li>
+      }
     </ul>
   </section>
 
-  <section>
+  <!--<section>
     <h2>Parcours</h2>
 
   </section>
 
   <section>
     <h2>Passions</h2>
-  </section>
+  </section>-->
 </div>
