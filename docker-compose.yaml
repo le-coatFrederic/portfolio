@@ -10,7 +10,7 @@ services:
       - TZ=Europe/Paris
       - NGINX_AUTORELOAD=true
     volumes:
-      - ./config/nginx.conf:/config/nginx/site-confs/default.conf:ro
+      - ./front/nginx.conf:/config/nginx/site-confs/default.conf:ro
       - ./front/dist/front/browser:/config/www:ro
     ports:
       - 80:80
