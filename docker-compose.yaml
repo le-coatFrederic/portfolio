@@ -1,6 +1,8 @@
 services:
   nginx:
-    image: lscr.io/linuxserver/nginx:latest
+    build:
+      context: ./front
+      dockerfile: Dockerfile
     container_name: nginx
     environment:
       - PUID=1000
