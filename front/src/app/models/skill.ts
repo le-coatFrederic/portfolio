@@ -4,4 +4,11 @@ export interface Skill {
   description: string;
   mastering: string;
   proof: string;
+  category: SkillCategory;
+}
+
+export enum SkillCategory {
+  PROJECT_MANAGEMENT,
+  PROGRAMMING,
+  TRANSVERSAL,
 }

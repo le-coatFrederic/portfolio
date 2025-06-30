@@ -30,10 +30,14 @@ ul {
   padding: 0 var(--medium-gap);
   list-style: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: var(--medium-gap);
 }
 
+li {
+  flex-grow: 1;
+}
 .skill-card {
   background-color: #EEE;
   border-radius: var(--small-gap);
@@ -43,14 +47,15 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: var(--color-main);
+  /*background-color: var(--color-main);
+  color: #FFFFFF;*/
+  color: var(--color-main);
   border-radius: var(--small-gap) var(--small-gap) 0 0;
-  color: #FFFFFF;
-  padding: var(--small-gap);
+  padding: var(--small-gap) var(--small-gap) 0 var(--small-gap);
 }
 
 .skill-desc {
-  padding: var(--small-gap);
+  padding: 0 var(--small-gap) var(--small-gap) var(--small-gap);
   color: #555;
   font-style: italic;
   font-size: 14px;

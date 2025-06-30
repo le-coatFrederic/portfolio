@@ -2,13 +2,29 @@
 <div class="content">
   <section>
     <h2>Compétences</h2>
-    <!--<h3>Transversales</h3>
+    <h3>Transversales</h3>
     <ul>
-    </ul>-->
+      @for (skill of this.transversalSkills; track skill.id) {
+        <li>
+          <div class="skill-card">
+            <div class="bold skill-top">
+              <p class="title">{{skill.title}}</p>
+              <p>{{skill.mastering}}</p>
+            </div>
+            <div class="skill-desc">
+              <p>{{skill.description}}</p>
+            </div>
+            <div class="skill-bot">
+              <p>{{skill.proof}}</p>
+            </div>
+          </div>
+        </li>
+      }
+    </ul>
 
     <h3>Méthodologiques et techniques</h3>
     <ul>
-      @for (skill of this.skills; track skills) {
+      @for (skill of this.methodAndProgrammingSkills; track skill.id) {
         <li>
           <div class="skill-card">
             <div class="bold skill-top">
