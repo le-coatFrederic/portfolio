@@ -1,1 +1,21 @@
-<p>contact works!</p>
+<div class="content">
+  <h1>Contacts</h1>
+
+  <div class="contact-list">
+    @for (contact of this.contacts; track contact.id) {
+      <a href="{{contact.link}}">
+        <div class="contact-card">
+          <div class="top">
+            <p>{{contact.title}}</p>
+          </div>
+          <div class="details">
+            <p>{{contact.description}}</p>
+          </div>
+          <div class="bottom">
+            <p>Réponse : {{contact.answerInTime}}</p>
+          </div>
+        </div>
+      </a>
+    }
+  </div>
+</div>
