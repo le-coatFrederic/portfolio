@@ -25,6 +25,10 @@ h2, p {
   margin: 0;
 }
 
+h2 {
+  text-align: left;
+}
+
 ul {
   margin: 0;
   padding: 0 var(--medium-gap);
