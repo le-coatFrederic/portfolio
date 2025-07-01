@@ -18,16 +18,7 @@ export class ProjectORMTest implements ProjectORM {
         title: "Portfolio",
         description: "Le site web sur lequel vous êtes actuellement.",
         skills: [
-          {
-            id: 1,
-            title: "Définir les besoins",
-            description: "Être capable de comprendre les besoins d'un client."
-          },
-          {
-            id: 2,
-            title: "Planifier les phases d'un projet",
-            description: "Pouvoir comprendre les différentes phases d'un projet."
-          },
+
         ],
         technologies: [
           {
@@ -81,16 +72,6 @@ export class ProjectORMTest implements ProjectORM {
         title: "AnSiWeb",
         description: "Un site vitrine, blog et gestion de concours pour une association nommée \"Antiquités Siciliennes\".",
         skills: [
-          {
-            id: 1,
-            title: "Définir les besoins",
-            description: "Être capable de comprendre les besoins d'un client."
-          },
-          {
-            id: 2,
-            title: "Planifier les phases d'un projet",
-            description: "Pouvoir comprendre les différentes phases d'un projet."
-          },
         ],
         technologies: [
           {
