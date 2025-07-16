@@ -22,6 +22,10 @@ h1, h2, h3, p {
   flex-direction: column;
 }
 
+#project-chart p {
+  text-align: left;
+}
+
 .small-card {
   padding: var(--small-gap);
   background-color: #EEE;
