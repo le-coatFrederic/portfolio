@@ -36,6 +36,7 @@ h1, h2, h3, p {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: var(--medium-gap);
 
   background-color: var(--color-main);
   border-radius: var(--small-gap);
